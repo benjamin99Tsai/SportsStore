@@ -8,8 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
 
+class ProductTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var stockStepper: UIStepper!
+    @IBOutlet weak var stockField: UITextField!
+}
+
+
+class ViewController: UIViewController, UITableViewDataSource {
+
+    @IBOutlet weak var stockTableView: UITableView!
+    @IBOutlet weak var totalStockLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         displayTotal();
@@ -20,8 +33,22 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBOutlet weak var totalStockLabel: UILabel!
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return products.count;
+    }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let product = products[indexPath.row];
+        let cell = tableView.dequeueReusableCellWithIdentifier("ProductCell") as! ProductTableViewCell;
+        
+        cell.nameLabel.text = product.0;
+        cell.descriptionLabel.text = product.1;
+        cell.stockStepper.value = Double(product.3);
+        cell.stockField.text = String(product.4);
+        
+        return cell;
+    }
+
     var products = [
         ("Kayak", "A boat for one person", "Watersports", 275.0, 10),
         ("Lifejacket", "Protective and fashionable", "Watersports", 48.95, 14),
@@ -39,4 +66,5 @@ class ViewController: UIViewController {
             totalStockLabel.text = "\(totalCount) Products in Stock"
     }
 }
+
 
