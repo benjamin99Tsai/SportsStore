@@ -39,14 +39,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="112.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qlP-uq-2lf">
-                                                    <rect key="frame" x="408" y="26" width="176" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="176" id="MGv-EB-Cpk"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="DescriptionLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jct-uW-wnl">
                                                     <rect key="frame" x="52" y="68" width="526" height="31"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -55,7 +47,21 @@
                                                 </label>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="HP6-75-Wr8">
                                                     <rect key="frame" x="297" y="26" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="stockLevelDidChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="BCq-Ph-Dpz"/>
+                                                    </connections>
                                                 </stepper>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uGJ-jt-EUA">
+                                                    <rect key="frame" x="408" y="30" width="176" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="176" id="Tdd-TY-rGv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="stockLevelDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="VpA-Qw-Cei"/>
+                                                    </connections>
+                                                </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOb-vq-Bga">
                                                     <rect key="frame" x="52" y="21" width="223" height="39"/>
                                                     <constraints>
@@ -70,21 +76,22 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="Jct-uW-wnl" secondAttribute="trailing" constant="14" id="3ec-GN-GdS"/>
                                                 <constraint firstItem="HP6-75-Wr8" firstAttribute="leading" secondItem="aOb-vq-Bga" secondAttribute="trailing" constant="22" id="7bK-Vk-SlF"/>
                                                 <constraint firstItem="aOb-vq-Bga" firstAttribute="top" secondItem="U1a-LS-ONM" secondAttribute="topMargin" constant="13" id="8Xo-YY-YdB"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="qlP-uq-2lf" secondAttribute="trailing" constant="8" id="9Lh-ol-mdK"/>
+                                                <constraint firstItem="uGJ-jt-EUA" firstAttribute="top" secondItem="U1a-LS-ONM" secondAttribute="topMargin" constant="22" id="BH3-ja-7au"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Jct-uW-wnl" secondAttribute="bottom" constant="5.5" id="GcK-W0-8bS"/>
-                                                <constraint firstItem="qlP-uq-2lf" firstAttribute="top" secondItem="U1a-LS-ONM" secondAttribute="topMargin" constant="18" id="TIa-PF-m85"/>
                                                 <constraint firstItem="HP6-75-Wr8" firstAttribute="top" secondItem="U1a-LS-ONM" secondAttribute="topMargin" constant="18" id="iew-Y7-wrz"/>
+                                                <constraint firstItem="uGJ-jt-EUA" firstAttribute="leading" secondItem="HP6-75-Wr8" secondAttribute="trailing" constant="17" id="sb8-41-CKO"/>
                                                 <constraint firstItem="aOb-vq-Bga" firstAttribute="leading" secondItem="U1a-LS-ONM" secondAttribute="leadingMargin" constant="44" id="vde-ZX-5Jx"/>
-                                                <constraint firstItem="qlP-uq-2lf" firstAttribute="leading" secondItem="HP6-75-Wr8" secondAttribute="trailing" constant="17" id="vvc-uv-06Q"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="uGJ-jt-EUA" secondAttribute="trailing" constant="8" id="wPk-Ap-L9m"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="uGJ-jt-EUA" secondAttribute="trailing" constant="16" id="dBL-JT-wIu"/>
                                             <constraint firstItem="Jct-uW-wnl" firstAttribute="leading" secondItem="kBB-GJ-Jvo" secondAttribute="leading" constant="52" id="lnd-bo-Vl4"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="Jct-uW-wnl" id="7mN-D5-njd"/>
                                             <outlet property="nameLabel" destination="aOb-vq-Bga" id="cvT-EU-kaM"/>
-                                            <outlet property="stockField" destination="qlP-uq-2lf" id="Vu6-04-gy5"/>
+                                            <outlet property="stockField" destination="uGJ-jt-EUA" id="gQE-Na-fNO"/>
                                             <outlet property="stockStepper" destination="HP6-75-Wr8" id="5oR-HF-GAp"/>
                                         </connections>
                                     </tableViewCell>
