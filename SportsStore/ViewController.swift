@@ -16,7 +16,7 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var stockStepper: UIStepper!
     @IBOutlet weak var stockField: UITextField!
     
-    var productId: Int?;
+    var product: Product?;
 }
 
 
@@ -44,11 +44,11 @@ class ViewController: UIViewController, UITableViewDataSource {
         let product = products[indexPath.row];
         let cell = tableView.dequeueReusableCellWithIdentifier("ProductCell") as! ProductTableViewCell;
         
-        cell.nameLabel.text = product.0;
-        cell.descriptionLabel.text = product.1;
-        cell.stockStepper.value = Double(product.4);
-        cell.stockField.text = String(product.4);
-        cell.productId = indexPath.row;
+        cell.nameLabel.text = product.name;
+        cell.descriptionLabel.text = product.description;
+        cell.stockStepper.value = Double(product.stock);
+        cell.stockField.text = String(product.stock);
+        cell.product = self.products[indexPath.row];
         
         return cell;
     }
@@ -64,7 +64,7 @@ class ViewController: UIViewController, UITableViewDataSource {
                 
                 if let cell = currentCell as? ProductTableViewCell {
                     
-                    if let currentId = cell.productId {
+                    if let product = cell.product {
                         
                         var newStockLevel: Int?;
                         
@@ -86,7 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource {
                         // update the UI to the latest stock level:
                         if let level = newStockLevel {
                             
-                            products[currentId].4 = level;
+                            product.stock = level;
                             cell.stockStepper.value = Double(level);
                             cell.stockField.text = String(level);
                         }
@@ -101,21 +101,29 @@ class ViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-
     var products = [
-        ("Kayak", "A boat for one person", "Watersports", 275.0, 10),
-        ("Lifejacket", "Protective and fashionable", "Watersports", 48.95, 14),
-        ("Soccer Ball", "FIFA-approved size and weight", "Soccer", 19.5, 32),
-        ("Corner Flags", "Give your playing field a professional touch", "Soccer", 34.95, 1),
-        ("Stadium", "Flat-packed 35,000-seat stadium", "Soccer", 79500.0, 4),
-        ("Thinking Cap", "Improve your brain efficiency by 75%", "Chess", 16.0, 8),
-        ("Unsteady Chair", "Secretly give your opponent a disadvantage", "Chess", 29.95, 3),
-        ("Human Chess Board", "A fun game for the family", "Chess", 75.0, 2),
-        ("Bling-Bling King", "Gold-plated, diamond-studded King", "Chess", 1200.0, 4)
+        Product(name: "Kayak", description: "A boat for one person", category: "Watersports", price: 275, stock: 10),
+        Product(name: "Lifejacket", description: "Protective and fashinable", category: "Watersports", price: 48.95, stock: 14),
+        Product(name: "Soccer Ball", description: "FIFA-approved size and weight", category: "Soccer", price: 19.5, stock: 32),
+        Product(name: "Corner Flags", description: "Give your playing field a professional touch", category: "Soccer", price: 34.95, stock: 1),
+        Product(name: "Stadium", description: "Flat-packed 35,000-seat stadium", category: "Soccer", price: 79500.0, stock: 4),
+        Product(name: "Thinking Cap", description: "Improve your brain efficiency by 75%", category:"Chess", price:16.0, stock: 8),
+        Product(name: "Unsteady Chair", description: "Secretly give your opponent a disadvantage", category: "Chess", price: 29.95, stock: 3),
+        Product(name: "Human Chess Board", description: "A fun game for the family", category: "Chess", price: 75.0, stock: 2),
+        Product(name: "Bling-Bling King", description: "Gold-plated, diamond-studded King", category: "Chess", price: 1200.0, stock: 4)
     ];
     
+    /* Utilities */
+    func calculateStockValue(products: [Product]) -> Double {
+        
+        return products.reduce(0, combine: { (total, product) -> Double in
+            return total + product.stockValue;
+        })
+    }
+    
+    
     func displayTotal() {
-            let totalCount = products.reduce(0, combine: {(total, product) -> Int in return total + product.4})
+            let totalCount = products.reduce(0, combine: {(total, product) -> Int in return total + product.stock})
             totalStockLabel.text = "\(totalCount) Products in Stock"
     }
 }
