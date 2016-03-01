@@ -8,6 +8,12 @@
 
 import UIKit
 
+var handler = { (product: Product) -> Void in
+    print("Change \(product.name) \(product.stock) items in the stock");
+}
+
+
+// MARK: The TableViewCell for the Product Table
 
 class ProductTableViewCell: UITableViewCell {
     
@@ -19,6 +25,9 @@ class ProductTableViewCell: UITableViewCell {
     var product: Product?;
 }
 
+
+// MARK:
+// MARK: The ViewController
 
 class ViewController: UIViewController, UITableViewDataSource {
 
@@ -35,7 +44,9 @@ class ViewController: UIViewController, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-    /* TableView Datasource */
+    // MARK:
+    // MARK: TableViewDataSource Related
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count;
     }
@@ -45,7 +56,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("ProductCell") as! ProductTableViewCell;
         
         cell.nameLabel.text = product.name;
-        cell.descriptionLabel.text = product.description;
+        cell.descriptionLabel.text = product.productDescription;
         cell.stockStepper.value = Double(product.stock);
         cell.stockField.text = String(product.stock);
         cell.product = self.products[indexPath.row];
@@ -53,7 +64,8 @@ class ViewController: UIViewController, UITableViewDataSource {
         return cell;
     }
     
-    /* TextField Related*/
+    // MARK:
+    // MARK: TextField Related
     
     @IBAction func stockLevelDidChange(sender: AnyObject) {
         
@@ -89,6 +101,8 @@ class ViewController: UIViewController, UITableViewDataSource {
                             product.stock = level;
                             cell.stockStepper.value = Double(level);
                             cell.stockField.text = String(level);
+                            
+                            logger.logItem(product);
                         }
                         
                         break;
@@ -110,10 +124,14 @@ class ViewController: UIViewController, UITableViewDataSource {
         Product(name: "Thinking Cap", description: "Improve your brain efficiency by 75%", category:"Chess", price:16.0, stock: 8),
         Product(name: "Unsteady Chair", description: "Secretly give your opponent a disadvantage", category: "Chess", price: 29.95, stock: 3),
         Product(name: "Human Chess Board", description: "A fun game for the family", category: "Chess", price: 75.0, stock: 2),
-        Product(name: "Bling-Bling King", description: "Gold-plated, diamond-studded King", category: "Chess", price: 1200.0, stock: 4)
+        Product(name: "Bling-Bling King", description: "Gold-plated, diamond-studded King", category: "Chess", price:   1200.0, stock: 4)
     ];
     
-    /* Utilities */
+    let logger = Logger<Product>(callback: handler);
+    
+    // MARK:
+    // MARK: Utilities
+
     func calculateStockValue(products: [Product]) -> Double {
         
         return products.reduce(0, combine: { (total, product) -> Double in
@@ -126,6 +144,7 @@ class ViewController: UIViewController, UITableViewDataSource {
             let totalCount = products.reduce(0, combine: {(total, product) -> Int in return total + product.stock})
             totalStockLabel.text = "\(totalCount) Products in Stock"
     }
+    
 }
 
 
