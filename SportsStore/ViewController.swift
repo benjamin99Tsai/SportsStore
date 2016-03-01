@@ -34,9 +34,27 @@ class ViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var stockTableView: UITableView!
     @IBOutlet weak var totalStockLabel: UILabel!
     
+    let logger = productSharedLogger;
+    var productStore = ProductDataStore();
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         displayTotal();
+        
+        // setup the product store:
+        self.productStore.callback = { (product: Product) in
+            for cell in self.stockTableView.visibleCells {
+                if let productCell = cell as? ProductTableViewCell {
+                    if productCell.product?.name == product.name {
+                        productCell.stockStepper.value = Double(product.stock);
+                        productCell.stockField.text = String(product.stock);
+                        break;
+                    }
+                }
+                
+                self.displayTotal();
+            }
+        };
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,18 +66,18 @@ class ViewController: UIViewController, UITableViewDataSource {
     // MARK: TableViewDataSource Related
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return products.count;
+        return self.productStore.products.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let product = products[indexPath.row];
+        let product = self.productStore.products[indexPath.row];
         let cell = tableView.dequeueReusableCellWithIdentifier("ProductCell") as! ProductTableViewCell;
         
         cell.nameLabel.text = product.name;
         cell.descriptionLabel.text = product.productDescription;
         cell.stockStepper.value = Double(product.stock);
         cell.stockField.text = String(product.stock);
-        cell.product = self.products[indexPath.row];
+        cell.product = self.productStore.products[indexPath.row];
         
         return cell;
     }
@@ -115,20 +133,6 @@ class ViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    var products = [
-        Product(name: "Kayak", description: "A boat for one person", category: "Watersports", price: 275, stock: 10),
-        Product(name: "Lifejacket", description: "Protective and fashinable", category: "Watersports", price: 48.95, stock: 14),
-        Product(name: "Soccer Ball", description: "FIFA-approved size and weight", category: "Soccer", price: 19.5, stock: 32),
-        Product(name: "Corner Flags", description: "Give your playing field a professional touch", category: "Soccer", price: 34.95, stock: 1),
-        Product(name: "Stadium", description: "Flat-packed 35,000-seat stadium", category: "Soccer", price: 79500.0, stock: 4),
-        Product(name: "Thinking Cap", description: "Improve your brain efficiency by 75%", category:"Chess", price:16.0, stock: 8),
-        Product(name: "Unsteady Chair", description: "Secretly give your opponent a disadvantage", category: "Chess", price: 29.95, stock: 3),
-        Product(name: "Human Chess Board", description: "A fun game for the family", category: "Chess", price: 75.0, stock: 2),
-        Product(name: "Bling-Bling King", description: "Gold-plated, diamond-studded King", category: "Chess", price:   1200.0, stock: 4)
-    ];
-    
-    let logger = productSharedLogger;
-    
     // MARK:
     // MARK: Utilities
 
@@ -141,7 +145,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     
     func displayTotal() {
-            let totalCount = products.reduce(0, combine: {(total, product) -> Int in return total + product.stock})
+            let totalCount = self.productStore.products.reduce(0, combine: {(total, product) -> Int in return total + product.stock})
             totalStockLabel.text = "\(totalCount) Products in Stock"
     }
     

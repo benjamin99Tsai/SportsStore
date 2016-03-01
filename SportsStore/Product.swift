@@ -18,7 +18,6 @@ class Product : NSObject, NSCopying {
     private var priceBackingValue: Double = 0;
     
     // MARK:
-    // --
     // MARK: Life Cycle
     
     init(name: String, description: String, category: String, price: Double, stock: Int) {
@@ -33,7 +32,6 @@ class Product : NSObject, NSCopying {
     }
     
     // MARK: 
-    // --
     // MARK: Special Getters/Setters
     
     var stock: Int {
@@ -57,7 +55,6 @@ class Product : NSObject, NSCopying {
     }
     
     // MARK:
-    // --
     // MARK: Related Operations
     
     func calculateTax(rate: Double) -> Double {
@@ -71,7 +68,6 @@ class Product : NSObject, NSCopying {
     }
     
     // MARK:
-    // --
     // MARK: NSCopying
     
     func copyWithZone(zone: NSZone) -> AnyObject {
