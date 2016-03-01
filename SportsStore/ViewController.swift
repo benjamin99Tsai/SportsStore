@@ -102,7 +102,7 @@ class ViewController: UIViewController, UITableViewDataSource {
                             cell.stockStepper.value = Double(level);
                             cell.stockField.text = String(level);
                             
-                            logger.logItem(product);
+                            self.logger.logItem(product);
                         }
                         
                         break;
@@ -127,7 +127,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         Product(name: "Bling-Bling King", description: "Gold-plated, diamond-studded King", category: "Chess", price:   1200.0, stock: 4)
     ];
     
-    let logger = Logger<Product>(callback: handler);
+    let logger = productSharedLogger;
     
     // MARK:
     // MARK: Utilities
