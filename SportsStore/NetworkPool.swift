@@ -18,17 +18,14 @@ final class NetworkPool {
     private var connections = [NetworkConnection]();
     private var semaphore: dispatch_semaphore_t;
     private var queue: dispatch_queue_t;
+    private var itemCreated = 0;
     
     // MARK:
     // MARK: Life Cycle
     
     private init() {
-        for _ in 0 ..< self.connectionCount {
-            self.connections.append(NetworkConnection());
-        }
-        
         self.semaphore = dispatch_semaphore_create(self.connectionCount);
-        self.queue = dispatch_queue_create("NetworkPoolQueue", DISPATCH_QUEUE_CONCURRENT);
+        self.queue = dispatch_queue_create("NetworkPoolQueue", DISPATCH_QUEUE_SERIAL);
     }
     
     // MARK:
@@ -39,7 +36,13 @@ final class NetworkPool {
         
         var connection: NetworkConnection? = nil;
         dispatch_sync(self.queue, { () -> Void in
-            connection = self.connections.removeAtIndex(0);
+            if (self.connections.count > 0) {
+                connection = self.connections.removeAtIndex(0);
+            
+            } else if (self.itemCreated < self.connectionCount) {
+                connection = NetworkConnection();
+                self.itemCreated++;
+            }
         });
         
         return connection!;
