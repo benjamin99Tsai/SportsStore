@@ -145,8 +145,18 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     
     func displayTotal() {
-            let totalCount = self.productStore.products.reduce(0, combine: {(total, product) -> Int in return total + product.stock})
-            totalStockLabel.text = "\(totalCount) Products in Stock"
+        let totals:(Int, Double) = self.productStore.products.reduce((0, 0.0)) { (totals, product) -> (Int, Double) in
+            return (
+                totals.0 + product.stock,
+                totals.1 + product.stockValue
+            );
+        }
+        
+        let factory = StockTotalFactory.factory(StockTotalFactory.Currency.GBP);
+        let totalAmount = factory!.converter!.convertTotal(totals.1);
+        let formatted = factory!.formatter!.formatTotal(totalAmount);
+    
+        totalStockLabel.text = "\(totals.0) Products in Stock. Total Value: \(formatted)";
     }
     
 }

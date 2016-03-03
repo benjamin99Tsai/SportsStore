@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		843E85BE1C8824C400F89739 /* StockValueImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E85BD1C8824C400F89739 /* StockValueImplementations.swift */; };
+		843E85C01C8826D400F89739 /* StockValueFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E85BF1C8826D400F89739 /* StockValueFactories.swift */; };
 		845030161C85598100FCB10F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845030151C85598100FCB10F /* Logger.swift */; };
 		845030441C859E7100FCB10F /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845030431C859E7100FCB10F /* NetworkConnection.swift */; };
 		845030461C85A00500FCB10F /* NetworkPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845030451C85A00500FCB10F /* NetworkPool.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		843E85BD1C8824C400F89739 /* StockValueImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockValueImplementations.swift; sourceTree = "<group>"; };
+		843E85BF1C8826D400F89739 /* StockValueFactories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockValueFactories.swift; sourceTree = "<group>"; };
 		845030151C85598100FCB10F /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		845030431C859E7100FCB10F /* NetworkConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConnection.swift; sourceTree = "<group>"; };
 		845030451C85A00500FCB10F /* NetworkPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPool.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 				845030451C85A00500FCB10F /* NetworkPool.swift */,
 				84CA31111C7EDF0E009A7F40 /* Product.swift */,
 				845030471C85A55B00FCB10F /* ProductDataStore.swift */,
+				843E85BD1C8824C400F89739 /* StockValueImplementations.swift */,
+				843E85BF1C8826D400F89739 /* StockValueFactories.swift */,
 				8464832C1C71FDF80065D698 /* ViewController.swift */,
 				846483581C71FFAE0065D698 /* Tuples.playground */,
 				8464832E1C71FDF80065D698 /* Main.storyboard */,
@@ -277,12 +283,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				845030161C85598100FCB10F /* Logger.swift in Sources */,
+				843E85C01C8826D400F89739 /* StockValueFactories.swift in Sources */,
 				845030481C85A55B00FCB10F /* ProductDataStore.swift in Sources */,
 				8464832D1C71FDF80065D698 /* ViewController.swift in Sources */,
 				845030441C859E7100FCB10F /* NetworkConnection.swift in Sources */,
 				8464832B1C71FDF80065D698 /* AppDelegate.swift in Sources */,
 				84CA31121C7EDF0E009A7F40 /* Product.swift in Sources */,
 				84CA31141C7EEB65009A7F40 /* Utils.swift in Sources */,
+				843E85BE1C8824C400F89739 /* StockValueImplementations.swift in Sources */,
 				845030461C85A00500FCB10F /* NetworkPool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
