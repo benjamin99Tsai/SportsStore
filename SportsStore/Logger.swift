@@ -8,8 +8,18 @@
 
 import Foundation
 
-let productSharedLogger = Logger<Product> (callback: {p in
-    print("Change \(p.name) \(p.stock) items in the stock");
+let productSharedLogger = Logger<Product> (callback: {product in
+    
+    var builder = ChangeRecordBuilder();
+    builder.productName = product.name;
+    builder.categoryName = product.category;
+    builder.value = String(product.stock);
+    builder.outerTag = "Stock Change";
+    
+    if let changeRecord: ChangeRecord = builder.changeRecord {
+        print(changeRecord);
+    }
+    
 });
 
 final class Logger<T where T:NSObject, T:NSCopying> {
