@@ -152,7 +152,7 @@ class ViewController: UIViewController, UITableViewDataSource {
             );
         }
         
-        let factory = StockTotalFactory.factory(StockTotalFactory.Currency.GBP);
+        let factory = StockTotalFactory.factory(StockTotalFactory.Currency.EURO);
         let totalAmount = factory!.converter!.convertTotal(totals.1);
         let formatted = factory!.formatter!.formatTotal(totalAmount);
     
