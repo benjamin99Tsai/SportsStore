@@ -41,20 +41,8 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad();
         displayTotal();
         
-        // setup the product store:
-        self.productStore.callback = { (product: Product) in
-            for cell in self.stockTableView.visibleCells {
-                if let productCell = cell as? ProductTableViewCell {
-                    if productCell.product?.name == product.name {
-                        productCell.stockStepper.value = Double(product.stock);
-                        productCell.stockField.text = String(product.stock);
-                        break;
-                    }
-                }
-                
-                self.displayTotal();
-            }
-        };
+        let eventBridge = EventBridge(callback: self.updateStockLevel);
+        self.productStore.callback = eventBridge.inputCallback;
     }
 
     override func didReceiveMemoryWarning() {
@@ -157,6 +145,20 @@ class ViewController: UIViewController, UITableViewDataSource {
         let formatted = factory!.formatter!.formatTotal(totalAmount);
     
         totalStockLabel.text = "\(totals.0) Products in Stock. Total Value: \(formatted)";
+    }
+    
+    func updateStockLevel(name: String, level: Int) {
+        
+        for cell in self.stockTableView.visibleCells {
+            if let productCell = cell as? ProductTableViewCell {
+                if productCell.product?.name == name {
+                    productCell.stockField.text = String(level);
+                    productCell.stockStepper.value = Double(level);
+                }
+            }
+            
+            self.displayTotal();
+        }
     }
     
 }

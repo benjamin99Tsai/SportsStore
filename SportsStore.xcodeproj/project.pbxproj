@@ -24,6 +24,7 @@
 		84CA31121C7EDF0E009A7F40 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA31111C7EDF0E009A7F40 /* Product.swift */; };
 		84CA31141C7EEB65009A7F40 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA31131C7EEB65009A7F40 /* Utils.swift */; };
 		84DCDB531C8A9F9E00394A20 /* Euro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCDB521C8A9F9E00394A20 /* Euro.swift */; };
+		84DCDB721C8C252B00394A20 /* EventBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCDB711C8C252B00394A20 /* EventBridge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		84CA31111C7EDF0E009A7F40 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		84CA31131C7EEB65009A7F40 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		84DCDB521C8A9F9E00394A20 /* Euro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Euro.swift; sourceTree = "<group>"; };
+		84DCDB711C8C252B00394A20 /* EventBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventBridge.swift; path = ../EventBridge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				8464832A1C71FDF80065D698 /* AppDelegate.swift */,
 				84DCDB521C8A9F9E00394A20 /* Euro.swift */,
+				84DCDB711C8C252B00394A20 /* EventBridge.swift */,
 				845030151C85598100FCB10F /* Logger.swift */,
 				845030431C859E7100FCB10F /* NetworkConnection.swift */,
 				845030451C85A00500FCB10F /* NetworkPool.swift */,
@@ -297,6 +300,7 @@
 				84CA31121C7EDF0E009A7F40 /* Product.swift in Sources */,
 				8495E3251C892E34003AC472 /* ChangeRecordBuilder.swift in Sources */,
 				84DCDB531C8A9F9E00394A20 /* Euro.swift in Sources */,
+				84DCDB721C8C252B00394A20 /* EventBridge.swift in Sources */,
 				84CA31141C7EEB65009A7F40 /* Utils.swift in Sources */,
 				843E85BE1C8824C400F89739 /* StockValueImplementations.swift in Sources */,
 				845030461C85A00500FCB10F /* NetworkPool.swift in Sources */,
