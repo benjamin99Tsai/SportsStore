@@ -51,7 +51,15 @@ final class ProductDataStore {
     // MARK: Operations
     
     func loadData() -> [Product] {
+        
+        var decoratedProducts = [Product]();
+        
         for product in self.productData {
+            
+            var product: Product = LowStockIncreaseDecorator(product: product);
+            if (product.category == "Soccer") {
+                product = SoccerDecreaseDecorator(product: product);
+            }
             
             dispatch_async(self.networkQueue, { () -> Void in
 
@@ -69,9 +77,11 @@ final class ProductDataStore {
             
                 NetworkPool.pushConnection(stockConnection);
             });
+            
+            decoratedProducts.append(product);
         }
             
-        return self.productData;
+        return decoratedProducts;
     }
 }
 
