@@ -27,7 +27,6 @@ class Product : NSObject, NSCopying {
     
     private var stockBackingValue: Int = 0;
     private var priceBackingValue: Double = 0;
-    private var salesTaxRate: Double = 0.2;
     
     // MARK: Life Cycle
     
@@ -72,7 +71,7 @@ class Product : NSObject, NSCopying {
     
     var stockValue: Double {
         get {
-            return self.price * (1 + self.salesTaxRate) * Double(self.stock);
+            return self.price * Double(self.stock);
         }
     }
     
@@ -97,60 +96,39 @@ class Product : NSObject, NSCopying {
     
     class func product(name: String, description: String, category: String, price: Double, stock: Int) -> Product {
         
-        var productImplementation: Product.Type? = nil;
-        
-        switch(category) {
-            case "Watersports":
-                productImplementation = WaterSportProduct.self;
-                break;
-            
-            case "Soccer":
-                productImplementation = SoccerProduct.self;
-                break;
-            
-            default:
-                productImplementation = Product.self;
-                break;
+        return Product(
+            name:name,
+            description: description,
+            category: category,
+            price: price,
+            stock: stock
+        );
+    }
+}
+
+
+class ProductComposite : Product {
+    
+    private let products: [Product];
+    
+    required init(name: String, description: String, category: String, price: Double, stock: Int) {
+        fatalError("Not Implemented");
+    }
+    
+    init(name: String, description: String, category: String, stock: Int, products: Product...) {
+        self.products = products;
+        super.init(name: name, description: description, category: category, price: 0, stock: stock);
+    }
+    
+    override var price: Double {
+        get {
+            return self.products.reduce(0) {(total, product) -> Double in total + product.price; };
         }
         
-        return productImplementation!.init(name:name, description: description, category: category, price: price, stock: stock);
+        set {
+            // Do nothing
+        }
     }
-}
-
-
-// MARK:
-// MARK: Water Sport Product
-
-class WaterSportProduct : Product {
-    
-    required init(name: String, description: String, category: String, price: Double, stock: Int) {
-        super.init(name: name, description: description, category: category, price: price, stock: stock);
-        self.salesTaxRate = 0.10;
-    }
-    
-    override var upsells: [UpsellOppertunities] {
-        return [
-            UpsellOppertunities.SwimLessons,
-            UpsellOppertunities.MapOfLakes
-        ];
-    }
-}
-
-
-// MARK:
-// MARK: Soccer Product
-
-class SoccerProduct : Product {
-    
-    required init(name: String, description: String, category: String, price: Double, stock: Int) {
-        super.init(name: name, description: description, category: category, price: price, stock: stock);
-        self.salesTaxRate = 0.25;
-    }
-    
-    override var upsells: [UpsellOppertunities] {
-        return [UpsellOppertunities.SoccerVideos];
-    }
-    
 }
 
 
