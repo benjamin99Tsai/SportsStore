@@ -140,11 +140,9 @@ class ViewController: UIViewController, UITableViewDataSource {
             );
         }
         
-        let factory = StockTotalFactory.factory(StockTotalFactory.Currency.EURO);
-        let totalAmount = factory!.converter!.convertTotal(totals.1);
-        let formatted = factory!.formatter!.formatTotal(totalAmount);
-    
-        totalStockLabel.text = "\(totals.0) Products in Stock. Total Value: \(formatted)";
+        let formatted = StockTotalFacade.formatCurrencyAmount(totals.1, currency: StockTotalFacade.Currency.USD);
+        
+        totalStockLabel.text = "\(totals.0) Products in Stock. Total Value: \(formatted ?? "None" )";
     }
     
     func updateStockLevel(name: String, level: Int) {

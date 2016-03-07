@@ -22,6 +22,7 @@
 		8464834B1C71FDF80065D698 /* SportsStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464834A1C71FDF80065D698 /* SportsStoreUITests.swift */; };
 		84819C2C1C8C387900192D75 /* ProductDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84819C2B1C8C387900192D75 /* ProductDecorator.swift */; };
 		8495E3251C892E34003AC472 /* ChangeRecordBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495E3241C892E34003AC472 /* ChangeRecordBuilder.swift */; };
+		84C789C91C8D40F500E8C2E6 /* StockTotalFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C789C81C8D40F500E8C2E6 /* StockTotalFacade.swift */; };
 		84CA31121C7EDF0E009A7F40 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA31111C7EDF0E009A7F40 /* Product.swift */; };
 		84CA31141C7EEB65009A7F40 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA31131C7EEB65009A7F40 /* Utils.swift */; };
 		84DCDB531C8A9F9E00394A20 /* Euro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCDB521C8A9F9E00394A20 /* Euro.swift */; };
@@ -68,6 +69,7 @@
 		846483581C71FFAE0065D698 /* Tuples.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Tuples.playground; sourceTree = "<group>"; };
 		84819C2B1C8C387900192D75 /* ProductDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDecorator.swift; sourceTree = "<group>"; };
 		8495E3241C892E34003AC472 /* ChangeRecordBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeRecordBuilder.swift; sourceTree = "<group>"; };
+		84C789C81C8D40F500E8C2E6 /* StockTotalFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockTotalFacade.swift; sourceTree = "<group>"; };
 		84CA31111C7EDF0E009A7F40 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		84CA31131C7EEB65009A7F40 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		84DCDB521C8A9F9E00394A20 /* Euro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Euro.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				8495E3241C892E34003AC472 /* ChangeRecordBuilder.swift */,
 				845030471C85A55B00FCB10F /* ProductDataStore.swift */,
 				84819C2B1C8C387900192D75 /* ProductDecorator.swift */,
+				84C789C81C8D40F500E8C2E6 /* StockTotalFacade.swift */,
 				843E85BD1C8824C400F89739 /* StockValueImplementations.swift */,
 				843E85BF1C8826D400F89739 /* StockValueFactories.swift */,
 				8464832C1C71FDF80065D698 /* ViewController.swift */,
@@ -304,6 +307,7 @@
 				84CA31121C7EDF0E009A7F40 /* Product.swift in Sources */,
 				8495E3251C892E34003AC472 /* ChangeRecordBuilder.swift in Sources */,
 				84DCDB531C8A9F9E00394A20 /* Euro.swift in Sources */,
+				84C789C91C8D40F500E8C2E6 /* StockTotalFacade.swift in Sources */,
 				84DCDB721C8C252B00394A20 /* EventBridge.swift in Sources */,
 				84CA31141C7EEB65009A7F40 /* Utils.swift in Sources */,
 				843E85BE1C8824C400F89739 /* StockValueImplementations.swift in Sources */,
