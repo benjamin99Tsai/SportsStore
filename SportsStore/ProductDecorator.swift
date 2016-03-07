@@ -18,7 +18,7 @@ class PriceDecorator : Product {
         
         super.init(
             name: product.name,
-            description: product.description,
+            description: product.productDescription,
             category: product.category,
             price: product.price,
             stock: product.stock
